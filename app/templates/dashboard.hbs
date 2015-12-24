@@ -1,0 +1,8 @@
+<h2>Dashboard for {{model.email}}</h2>
+<ul>
+  {{#each model.groups as |group|}}
+    <li>{{group.name}}</li>
+  {{/each}}
+</ul>
+
+<a href="#" {{action 'logout'}}>Logout</a>
