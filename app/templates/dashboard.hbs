@@ -1,8 +1,16 @@
 <h2>Dashboard for {{model.email}}</h2>
 <ul>
   {{#each model.groups as |group|}}
-    <li>{{group.name}}</li>
+    <li>
+      {{#link-to 'groups.show' group}}
+        {{group.name}}
+      {{/link-to}}
+    </li>
   {{/each}}
 </ul>
+
+{{outlet}}
+
+{{#link-to 'groups.new'}}New Group{{/link-to}} |
 
 <a href="#" {{action 'logout'}}>Logout</a>

@@ -7,15 +7,15 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('login');
-  this.route('dashboard');
-  this.route('groups', function() {
-    this.route('new');
-    this.route('show', {
-      path: ':group_id'
-    });
-
-    this.route('edit', {
-      path: ':group_id/edit'
+  this.route('dashboard', function() {
+    this.route('groups', {resetNamespace: true}, function() {
+      this.route('new');
+      this.route('show', {
+        path: ':group_id'
+      });
+      this.route('edit', {
+        path: ':group_id/edit'
+      });
     });
   });
 });

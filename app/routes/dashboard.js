@@ -14,6 +14,10 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
   model() {
     return this.store.findRecord('user', this.get('session.data.authenticated.user_id'));
+  },
+
+  renderTemplate() {
+    this.render();
   }
 
 });

@@ -15,14 +15,9 @@ export default Ember.Controller.extend({
   actions: {
     save() {
       if (this.get('isValid')) {
-        let email = this.get('session.data.authenticated.email');
-        let name = this.get('model.name');
-        let tok = this.get('session.data.authenticated.token');
-        let that = this;
-        jQuery.post('http://localhost:3000/create_group',
-          { email: email, name: name, token: tok },
-          function(data) {
-            that.transitionToRoute('groups.show', data.group);
+        var that = this;
+        this.get('model').save().then(function(group) {
+          that.transitionToRoute('groups.show', group);
         });
       } else {
         this.set('errorMessage', 'You have to fill all the fields');
@@ -32,7 +27,7 @@ export default Ember.Controller.extend({
 
     cancel() {
       this.store.unloadRecord(this.get('model'));
-      this.transitionToRoute('groups');
+      this.transitionToRoute('dashboard');
       return false;
     }
   }
